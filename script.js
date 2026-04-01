@@ -1,7 +1,6 @@
 const header = document.querySelector(".site-header");
 const revealItems = document.querySelectorAll(".reveal");
-const waitlistForm = document.querySelector(".waitlist-form");
-const formStatus = document.querySelector(".form-status");
+const waitlistForms = document.querySelectorAll("[data-waitlist-form]");
 const nav = document.querySelector(".nav");
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelectorAll(".nav-links a");
@@ -64,12 +63,13 @@ const revealObserver = new IntersectionObserver(
 
 revealItems.forEach((item) => revealObserver.observe(item));
 
-if (waitlistForm) {
+waitlistForms.forEach((waitlistForm) => {
   waitlistForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const nameInput = waitlistForm.querySelector('input[name="full_name"]');
     const emailInput = waitlistForm.querySelector('input[type="email"]');
+    const formStatus = waitlistForm.parentElement?.querySelector(".form-status");
     if (!nameInput || !emailInput) return;
 
     const nameValue = nameInput.value.trim();
@@ -145,4 +145,4 @@ if (waitlistForm) {
       }
     }
   });
-}
+});
