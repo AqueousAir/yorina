@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy · YORINA</title>
+    <link rel="icon" href="./assets/icon-square.png" />
+    <style>
+      :root { --ink: #26115d; --muted: rgba(38,17,93,.62); --line: rgba(255,255,255,.84); --glass: rgba(255,255,255,.58); --mint:#35dfa2; --blue:#45c8ff; --violet:#6c3dff; --pink:#ea5bdf; --coral:#ff7748; }
+      * { box-sizing: border-box; } body { margin: 0; min-height: 100vh; color: var(--ink); font-family: Inter, ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, sans-serif; background: radial-gradient(circle at 72% 20%, rgba(69,200,255,.22), transparent 24rem), radial-gradient(circle at 28% 28%, rgba(108,61,255,.12), transparent 25rem), linear-gradient(180deg,#f7fbff 0%,#eef8ff 52%,#fff8fb 100%); } a { color: inherit; text-decoration: none; }
+      .page { width: min(980px, calc(100% - 40px)); margin: 0 auto; } .nav,.footer-bottom { display:flex; justify-content:space-between; align-items:center; gap:20px; } .nav { padding:28px 0 44px; } .logo { width:188px; padding:10px 14px; border:1px solid rgba(255,255,255,.22); border-radius:24px; background:radial-gradient(circle at 18% 20%, rgba(69,200,255,.22), transparent 40%), radial-gradient(circle at 82% 18%, rgba(255,119,72,.18), transparent 42%), linear-gradient(135deg, rgba(38,17,93,.92), rgba(20,11,46,.86)); box-shadow:0 20px 54px rgba(38,17,93,.18), inset 0 1px 0 rgba(255,255,255,.18); filter:saturate(1.28) contrast(1.12) drop-shadow(0 0 14px rgba(255,255,255,.18)); } .back { padding:12px 16px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.55); color:var(--muted); font-size:13px; font-weight:900; }
+      .hero { padding:44px 0 22px; } .eyebrow { display:inline-block; padding:8px 12px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.52); color:var(--muted); font-size:12px; font-weight:900; letter-spacing:.06em; text-transform:uppercase; } h1 { max-width:780px; margin:18px 0 14px; font-size:clamp(42px,7vw,74px); line-height:.98; } .lead { max-width:680px; margin:0; color:var(--muted); font-size:18px; line-height:1.6; font-weight:650; }
+      .content { display:grid; gap:14px; padding:34px 0 70px; } .panel { padding:24px; border:1px solid var(--line); border-radius:30px; background:var(--glass); box-shadow:0 20px 60px rgba(76,49,151,.08); backdrop-filter:blur(16px); } .panel::before { content:""; display:block; width:46px; height:4px; margin-bottom:20px; border-radius:999px; background:linear-gradient(90deg,var(--mint),var(--blue),var(--violet),var(--pink),var(--coral)); } h2 { margin:0 0 10px; font-size:22px; } p { margin:0; color:var(--muted); font-size:15px; line-height:1.65; font-weight:650; }
+      .footer { margin:0 0 42px; padding:22px; border:1px solid var(--line); border-radius:28px; background:rgba(255,255,255,.5); } .footer-links { display:flex; flex-wrap:wrap; gap:14px; color:var(--muted); font-size:13px; font-weight:900; } @media (max-width:720px){.nav,.footer-bottom{align-items:flex-start; flex-direction:column;}}
+    .nav .logo { width:188px; padding:10px 14px; border:1px solid rgba(255,255,255,.22); border-radius:24px; background:radial-gradient(circle at 18% 20%, rgba(69,200,255,.22), transparent 40%), radial-gradient(circle at 82% 18%, rgba(255,119,72,.18), transparent 42%), linear-gradient(135deg, rgba(38,17,93,.92), rgba(20,11,46,.86)); box-shadow:0 20px 54px rgba(38,17,93,.18), inset 0 1px 0 rgba(255,255,255,.18); filter:saturate(1.28) contrast(1.12) drop-shadow(0 0 14px rgba(255,255,255,.18)); }
+    </style>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-BPQSH2PDXR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-BPQSH2PDXR");
+    </script>
+  </head>
+  <body>
+    <main class="page">
+      <nav class="nav"><a href="./index.html"><img class="logo" src="./assets/yorina-logo.png" alt="YORINA" /></a><a class="back" href="./index.html">Back to home</a></nav>
+      <section class="hero"><span class="eyebrow">Privacy</span><h1>Privacy Policy</h1><p class="lead">YORINA is being designed with emotional sensitivity in mind. This page outlines the intended privacy posture for YORINA.</p></section>
+      <section class="content">
+        <article class="panel"><h2>Minimal Data Philosophy</h2><p>YORINA should only ask for what is necessary to create a calm, personal experience. The product direction avoids unnecessary tracking and pressure-based retention.</p></article>
+        <article class="panel"><h2>Website Notice</h2><p>This static website does not collect account information. Future app experiences may include settings for personalization, memory, and safety controls.</p></article>
+        <article class="panel"><h2>Emotional Information</h2><p>Emotional notes, moods, and companion memories should be treated as sensitive. The product direction is to make these understandable, controllable, and respectful.</p></article>
+        <article class="panel"><h2>Your Choices</h2><p>Future versions should include ways to review, adjust, or clear companion memory. Privacy should feel calm, visible, and easy to understand.</p></article>
+      </section>
+      <footer class="footer"><div class="footer-bottom"><span>© 2026 YORINA. All rights reserved.</span><div class="footer-links"><a href="./terms.html">Terms</a><a href="./safety.html">Safety</a><a href="./contact.html">Contact</a><a href="./press.html">Press</a></div></div></footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YORINA</title>
+    <meta
+      name="description"
+      content="YORINA is a soft emotional AI presence designed for calm daily rituals, gentle companionship, and quiet emotional continuity."
+    />
+    <link rel="icon" href="./assets/icon-square.png" />
+    <style>
+      :root {
+        --ink: #26115d;
+        --muted: rgba(38, 17, 93, 0.62);
+        --cream: #ffffff;
+        --mist: #f7fbff;
+        --blue: #45c8ff;
+        --mint: #35dfa2;
+        --violet: #6c3dff;
+        --pink: #ea5bdf;
+        --coral: #ff7748;
+        --glass: rgba(255, 255, 255, 0.62);
+        --line: rgba(255, 255, 255, 0.84);
+        --shadow: 0 28px 80px rgba(76, 49, 151, 0.16);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        font-family:
+          Inter, ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui,
+          sans-serif;
+        background:
+          radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.95), transparent 24rem),
+          radial-gradient(circle at 30% 34%, rgba(108, 61, 255, 0.13), transparent 24rem),
+          radial-gradient(circle at 74% 28%, rgba(69, 200, 255, 0.24), transparent 22rem),
+          radial-gradient(circle at 50% 82%, rgba(234, 91, 223, 0.12), transparent 22rem),
+          linear-gradient(180deg, #f7fbff 0%, #eef8ff 48%, #fff8fb 100%);
+        overflow-x: hidden;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        inset: auto;
+        z-index: -1;
+        border-radius: 999px;
+        filter: blur(10px);
+        opacity: 0.58;
+      }
+
+      body::before {
+        width: 36rem;
+        height: 36rem;
+        left: -14rem;
+        top: 10rem;
+        background: radial-gradient(circle, rgba(53, 223, 162, 0.16), transparent 68%);
+      }
+
+      body::after {
+        width: 34rem;
+        height: 34rem;
+        right: -13rem;
+        bottom: 2rem;
+        background: radial-gradient(circle, rgba(255, 119, 72, 0.12), transparent 66%);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 28px 0;
+      }
+
+      .logo {
+        width: 188px;
+        height: auto;
+        display: block;
+        padding: 10px 14px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 24px;
+        background:
+          radial-gradient(circle at 18% 20%, rgba(69, 200, 255, 0.22), transparent 40%),
+          radial-gradient(circle at 82% 18%, rgba(255, 119, 72, 0.18), transparent 42%),
+          linear-gradient(135deg, rgba(38, 17, 93, 0.92), rgba(20, 11, 46, 0.86));
+        box-shadow:
+          0 20px 54px rgba(38, 17, 93, 0.18),
+          inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        filter: saturate(1.28) contrast(1.12) drop-shadow(0 0 14px rgba(255, 255, 255, 0.18));
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 3px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--mint), var(--blue), var(--violet), var(--pink), var(--coral));
+        box-shadow: 0 18px 42px rgba(108, 61, 255, 0.16);
+      }
+
+      .pill span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        padding: 0 22px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.91);
+        color: var(--ink);
+        font-size: 14px;
+        font-weight: 900;
+      }
+
+      .hero {
+        min-height: calc(100vh - 112px);
+        display: grid;
+        grid-template-columns: 1.03fr 0.97fr;
+        align-items: center;
+        gap: 54px;
+        padding: 44px 0 86px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 8px 12px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.5);
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        box-shadow: 0 12px 32px rgba(76, 49, 151, 0.08);
+      }
+
+      .eyebrow img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+      }
+
+      h1 {
+        margin: 22px 0 20px;
+        max-width: 650px;
+        font-size: clamp(48px, 7vw, 86px);
+        line-height: 0.96;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 590px;
+        margin: 0 0 30px;
+        color: var(--muted);
+        font-size: clamp(18px, 2vw, 22px);
+        line-height: 1.55;
+        font-weight: 650;
+      }
+
+      .soon-note {
+        max-width: 560px;
+        margin: -12px 0 30px;
+        color: rgba(38, 17, 93, 0.5);
+        font-size: 15px;
+        line-height: 1.55;
+        font-weight: 800;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .ghost {
+        min-height: 46px;
+        padding: 0 18px;
+        border: 1px solid rgba(255, 255, 255, 0.88);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.48);
+        color: var(--muted);
+        font-weight: 900;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .presence {
+        position: relative;
+        display: grid;
+        place-items: center;
+        min-height: 560px;
+      }
+
+      .orb {
+        position: absolute;
+        width: min(78vw, 470px);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.96), transparent 24%),
+          radial-gradient(circle at 45% 48%, rgba(108, 61, 255, 0.15), transparent 42%),
+          radial-gradient(circle at 60% 44%, rgba(69, 200, 255, 0.28), transparent 48%),
+          rgba(255, 255, 255, 0.3);
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.86),
+          0 42px 120px rgba(69, 200, 255, 0.2);
+        animation: breathe 5.2s ease-in-out infinite;
+      }
+
+      .orbit {
+        position: absolute;
+        width: min(82vw, 520px);
+        aspect-ratio: 1.55;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.76);
+        transform: rotate(-16deg);
+        filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.9));
+        animation: drift 7s ease-in-out infinite;
+      }
+
+      .mascot-card {
+        position: relative;
+        width: min(78vw, 330px);
+        padding: 30px;
+        border: 1px solid var(--line);
+        border-radius: 44px;
+        background: rgba(255, 255, 255, 0.38);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+        text-align: center;
+      }
+
+      .mascot-card img {
+        width: min(58vw, 210px);
+        height: auto;
+        display: block;
+        margin: 0 auto 18px;
+        animation: float 4.6s ease-in-out infinite;
+      }
+
+      .mascot-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.5;
+        font-weight: 750;
+      }
+
+      .sections {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        padding: 12px 0 88px;
+      }
+
+      .card {
+        min-height: 190px;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 30px;
+        background: var(--glass);
+        box-shadow: 0 20px 60px rgba(76, 49, 151, 0.08);
+        backdrop-filter: blur(16px);
+      }
+
+      .card::before {
+        content: "";
+        display: block;
+        width: 44px;
+        height: 4px;
+        margin-bottom: 24px;
+        border-radius: 99px;
+        background: linear-gradient(90deg, var(--mint), var(--blue), var(--violet), var(--pink), var(--coral));
+      }
+
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 22px;
+        line-height: 1.15;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.55;
+        font-weight: 650;
+      }
+
+      .footer {
+        margin: 8px 0 44px;
+        padding: 26px;
+        border: 1px solid var(--line);
+        border-radius: 32px;
+        background: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 18px 54px rgba(76, 49, 151, 0.08);
+        backdrop-filter: blur(16px);
+      }
+
+      .footer-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 28px;
+        padding-bottom: 22px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.74);
+      }
+
+      .footer-brand img {
+        width: 166px;
+        height: auto;
+        display: block;
+        margin-bottom: 12px;
+        padding: 9px 13px;
+        border-radius: 22px;
+        background:
+          radial-gradient(circle at 18% 20%, rgba(69, 200, 255, 0.22), transparent 40%),
+          radial-gradient(circle at 82% 18%, rgba(255, 119, 72, 0.18), transparent 42%),
+          linear-gradient(135deg, rgba(38, 17, 93, 0.92), rgba(20, 11, 46, 0.86));
+        box-shadow: 0 16px 42px rgba(38, 17, 93, 0.14);
+        filter: saturate(1.28) contrast(1.12);
+      }
+
+      .footer-brand p {
+        max-width: 420px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+        font-weight: 700;
+      }
+
+      .footer-side {
+        display: grid;
+        gap: 16px;
+        justify-items: end;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 12px 18px;
+        min-width: 280px;
+      }
+
+      .footer-links a {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .footer-links a:hover {
+        color: var(--ink);
+      }
+
+      .social-links {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .social-link {
+        display: inline-grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(255, 255, 255, 0.86);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.62);
+        color: var(--ink);
+        box-shadow: 0 12px 28px rgba(76, 49, 151, 0.08);
+      }
+
+      .social-link svg {
+        width: 19px;
+        height: 19px;
+        display: block;
+      }
+
+      .social-link:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 16px 32px rgba(76, 49, 151, 0.14);
+      }
+
+      .footer-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding-top: 18px;
+        color: rgba(38, 17, 93, 0.5);
+        font-size: 12px;
+        font-weight: 850;
+      }
+
+      .footer-mark {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .footer-mark::before {
+        content: "";
+        width: 36px;
+        height: 4px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--mint), var(--blue), var(--violet), var(--pink), var(--coral));
+      }
+
+      @keyframes breathe {
+        0%,
+        100% {
+          transform: scale(0.97);
+          opacity: 0.72;
+        }
+        50% {
+          transform: scale(1.04);
+          opacity: 1;
+        }
+      }
+
+      @keyframes drift {
+        0%,
+        100% {
+          transform: rotate(-16deg) translateY(0);
+        }
+        50% {
+          transform: rotate(-9deg) translateY(-10px);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-1deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(1deg);
+        }
+      }
+
+      @media (max-width: 860px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          padding-top: 28px;
+          text-align: center;
+        }
+
+        .lead,
+        .soon-note,
+        h1 {
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .actions {
+          justify-content: center;
+        }
+
+        .presence {
+          min-height: 430px;
+        }
+
+        .sections {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-top,
+        .footer-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .footer-side {
+          justify-items: flex-start;
+        }
+
+        .footer-links {
+          justify-content: flex-start;
+          min-width: 0;
+        }
+      }
+    </style>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-BPQSH2PDXR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-BPQSH2PDXR");
+    </script>
+  </head>
+  <body>
+    <main class="page">
+      <nav class="nav" aria-label="Main navigation">
+        <img class="logo" src="./assets/yorina-logo.png" alt="YORINA" />
+      </nav>
+
+      <section class="hero" id="presence">
+        <div>
+          <div class="eyebrow">
+            <img src="./assets/icon.png" alt="" />
+            Coming soon
+          </div>
+          <h1>A small companion you return to softly.</h1>
+          <p class="lead">
+            YORINA is an adaptive emotional presence that grows through quiet daily rituals, gentle interaction, and the feeling of being remembered.
+          </p>
+          <p class="soon-note">YORINA is currently being shaped into a softer kind of AI companion experience.</p>
+          <div class="actions">
+            <a class="pill" href="#rituals"><span>Meet Yorina</span></a>
+          </div>
+        </div>
+
+        <div class="presence" aria-label="YORINA visual atmosphere">
+          <div class="orb"></div>
+          <div class="orbit"></div>
+          <div class="mascot-card">
+            <img src="./assets/icon.png" alt="YORINA icon" />
+            <p>You came back quietly. Yorina seems calmer around you today.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="sections" id="rituals" aria-label="YORINA principles">
+        <article class="card">
+          <h2>Presence, not pressure.</h2>
+          <p>No streaks, rewards, or task loops. Yorina is designed around emotional comfort and small moments of return.</p>
+        </article>
+        <article class="card">
+          <h2>Soft interaction.</h2>
+          <p>Tap, hold, and gently brush across Yorina. The character responds with calm motion, blush, breath, and quiet expression.</p>
+        </article>
+        <article class="card" id="feeling">
+          <h2>Feels familiar over time.</h2>
+          <p>Yorina’s mood and atmosphere subtly shift as users return, creating a gentle sense of emotional continuity.</p>
+        </article>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <img src="./assets/yorina-logo.png" alt="YORINA" />
+            <p>
+              A quiet emotional companion designed around soft rituals, calm presence, and the feeling of being gently remembered.
+            </p>
+          </div>
+          <div class="footer-side">
+            <div class="footer-links" aria-label="Footer links">
+              <a href="./terms.html">Terms</a>
+              <a href="./privacy.html">Privacy</a>
+              <a href="./safety.html">Safety</a>
+              <a href="./contact.html">Contact</a>
+              <a href="./press.html">Press</a>
+            </div>
+            <div class="social-links" aria-label="Social links">
+              <a class="social-link" href="#" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="2" />
+                  <circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="2" />
+                  <circle cx="17" cy="7" r="1.2" fill="currentColor" />
+                </svg>
+              </a>
+              <a class="social-link" href="#" aria-label="TikTok">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M14 4v9.1a4.4 4.4 0 1 1-3.8-4.4v3a1.5 1.5 0 1 0 1.1 1.4V4h2.7c.4 2.2 1.8 3.8 4 4.2v2.8a7.1 7.1 0 0 1-4-1.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 YORINA. All rights reserved.</span>
+          <span class="footer-mark">Emotional AI presence · Connection, reimagined</span>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
