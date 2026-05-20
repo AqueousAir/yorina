@@ -322,6 +322,125 @@
         font-weight: 650;
       }
 
+      .download-section {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 28px;
+        align-items: center;
+        margin: -36px 0 52px;
+        padding: 30px;
+        border: 1px solid var(--line);
+        border-radius: 38px;
+        background:
+          radial-gradient(circle at 84% 20%, rgba(69, 200, 255, 0.18), transparent 18rem),
+          radial-gradient(circle at 14% 80%, rgba(234, 91, 223, 0.12), transparent 16rem),
+          rgba(255, 255, 255, 0.54);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+        overflow: hidden;
+      }
+
+      .download-section::before {
+        content: "";
+        position: absolute;
+        top: 14px;
+        left: 30px;
+        right: 30px;
+        height: 4px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--mint), var(--blue), var(--violet), var(--pink), var(--coral));
+        opacity: 0.82;
+      }
+
+      .download-copy {
+        position: relative;
+        z-index: 1;
+      }
+
+      .download-kicker {
+        margin: 0 0 12px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .download-copy h2 {
+        max-width: 620px;
+        margin: 0 0 10px;
+        font-size: clamp(30px, 4vw, 48px);
+        line-height: 1.02;
+      }
+
+      .download-copy p {
+        max-width: 610px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.6;
+        font-weight: 700;
+      }
+
+      .store-badges {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        gap: 12px;
+        min-width: 232px;
+      }
+
+      .store-badge {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 64px;
+        padding: 12px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.88);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.68);
+        box-shadow: 0 14px 34px rgba(76, 49, 151, 0.1);
+        color: var(--ink);
+        cursor: default;
+      }
+
+      .store-icon {
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 15px;
+        background:
+          radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.92), transparent 46%),
+          linear-gradient(135deg, rgba(69, 200, 255, 0.22), rgba(108, 61, 255, 0.18));
+        border: 1px solid rgba(255, 255, 255, 0.86);
+      }
+
+      .store-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .store-text {
+        display: grid;
+        gap: 2px;
+      }
+
+      .store-small {
+        color: rgba(38, 17, 93, 0.48);
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .store-name {
+        color: var(--ink);
+        font-size: 17px;
+        font-weight: 900;
+      }
+
       .footer {
         margin: 8px 0 44px;
         padding: 26px;
@@ -507,6 +626,23 @@
           grid-template-columns: 1fr;
         }
 
+        .download-section {
+          grid-template-columns: 1fr;
+          margin-top: -42px;
+          text-align: center;
+        }
+
+        .download-copy h2,
+        .download-copy p {
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .store-badges {
+          width: min(100%, 320px);
+          margin: 0 auto;
+        }
+
         .footer-top,
         .footer-bottom {
           flex-direction: column;
@@ -579,6 +715,43 @@
           <h2>Feels familiar over time.</h2>
           <p>Yorina’s mood and atmosphere subtly shift as users return, creating a gentle sense of emotional continuity.</p>
         </article>
+      </section>
+
+      <section class="download-section" aria-label="YORINA app download">
+        <div class="download-copy">
+          <p class="download-kicker">Mobile app</p>
+          <h2>YORINA is coming soon to iOS and Android.</h2>
+          <p>
+            The mobile app is being shaped as a quiet daily space for emotional presence, soft interaction, and a companion that feels gently yours.
+          </p>
+        </div>
+        <div class="store-badges" aria-label="App stores coming soon">
+          <div class="store-badge" aria-disabled="true">
+            <span class="store-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M16.7 13.1c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.8-2.1-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.5 1.3-.1 1.8-.8 3.3-.8s2 .8 3.4.8c1.4 0 2.3-1.2 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-3.8ZM14 5.4c.7-.9 1.2-2 1.1-3.2-1.1 0-2.4.7-3.1 1.6-.7.8-1.3 2-1.1 3.1 1.1.1 2.3-.6 3.1-1.5Z" fill="currentColor" />
+              </svg>
+            </span>
+            <span class="store-text">
+              <span class="store-small">Coming soon on</span>
+              <span class="store-name">App Store</span>
+            </span>
+          </div>
+          <div class="store-badge" aria-disabled="true">
+            <span class="store-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M4.4 2.7c-.3.3-.4.8-.4 1.4v15.8c0 .6.1 1.1.4 1.4l8.7-9.3L4.4 2.7Z" fill="currentColor" opacity="0.55" />
+                <path d="M15.8 9.1 6.1 3.5l7.8 8.5 1.9-2.9Z" fill="currentColor" opacity="0.82" />
+                <path d="m15.8 14.9-1.9-2.9-7.8 8.5 9.7-5.6Z" fill="currentColor" opacity="0.7" />
+                <path d="m20.1 11.1-4.3-2-2 2.9 2 2.9 4.3-2c1.2-.7 1.2-1.1 0-1.8Z" fill="currentColor" />
+              </svg>
+            </span>
+            <span class="store-text">
+              <span class="store-small">Coming soon on</span>
+              <span class="store-name">Google Play</span>
+            </span>
+          </div>
+        </div>
       </section>
 
       <footer class="footer">
